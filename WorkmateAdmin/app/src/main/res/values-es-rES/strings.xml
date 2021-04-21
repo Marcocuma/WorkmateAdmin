@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WorkmateAdmin</string>
+    <string name="login">Inciar sesión</string>
+    <string name="passwordhint">Escribe la contraseña</string>
+    <string name="incorrectpass">Contraseña incorrecta</string>
+    <string name="users">Usuarios</string>
+    <string name="companies">Empresas</string>
+    <string name="insertname">Introduce el numero</string>
+    <string name="remove">Eliminar</string>
+    <string name="usernotfound">Usuario no encontrado</string>
+    <string name="user">Usuario</string>
+</resources>

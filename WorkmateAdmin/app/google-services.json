@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "251355191139",
+    "firebase_url": "https://workmate-c3b8c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "workmate-c3b8c",
+    "storage_bucket": "workmate-c3b8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251355191139:android:86388251bdbe60f184a556",
+        "android_client_info": {
+          "package_name": "com.example.workmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251355191139-et0en52ik7nh8h0huh92411aea5o2ffp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.workmate",
+            "certificate_hash": "8e18ae7f0edabff907b227436bc42a876fe7ae84"
+          }
+        },
+        {
+          "client_id": "251355191139-l64p05951nlmrqc6ot22k6suundqb4qg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.workmate",
+            "certificate_hash": "8c32c90231b18207c03966b64d2f4fdd14c3e806"
+          }
+        },
+        {
+          "client_id": "251355191139-993ffthalvj12ovbap4ptjjtjb78qihr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVpIDZRiCDDOY5s7ZuIBbJQIe0kwGPuRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251355191139-993ffthalvj12ovbap4ptjjtjb78qihr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251355191139:android:c63b4cdd3274d4eb84a556",
+        "android_client_info": {
+          "package_name": "com.example.workmateadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251355191139-arrkps5ab19698jed6692mvvnh6lr7rd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.workmateadmin",
+            "certificate_hash": "8e18ae7f0edabff907b227436bc42a876fe7ae84"
+          }
+        },
+        {
+          "client_id": "251355191139-993ffthalvj12ovbap4ptjjtjb78qihr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVpIDZRiCDDOY5s7ZuIBbJQIe0kwGPuRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251355191139-993ffthalvj12ovbap4ptjjtjb78qihr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
