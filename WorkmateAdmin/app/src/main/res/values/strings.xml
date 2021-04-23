@@ -20,4 +20,7 @@
     <string name="remove">Remove</string>
     <string name="usernotfound">User not found</string>
     <string name="user">User</string>
+    <string name="usernamecode">Username code</string>
+    <string name="id">Id</string>
+    <string name="email">Email</string>
 </resources>

@@ -38,4 +38,14 @@ public class MainActivity extends AppCompatActivity {
         socket.connect();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        socket.disconnect();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        this.onBackPressed();
+        return true;
+    }
 }

@@ -10,4 +10,7 @@
     <string name="remove">Eliminar</string>
     <string name="usernotfound">Usuario no encontrado</string>
     <string name="user">Usuario</string>
+    <string name="usernamecode">Codigo de usuario</string>
+    <string name="id">Id</string>
+    <string name="email">Email</string>
 </resources>
