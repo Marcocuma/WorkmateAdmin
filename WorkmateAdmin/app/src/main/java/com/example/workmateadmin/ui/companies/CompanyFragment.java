@@ -1,15 +1,19 @@
 package com.example.workmateadmin.ui.companies;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,7 +38,8 @@ public class CompanyFragment extends Fragment {
     private TextView username, mail, usernamecode, id;
     private ImageView profile;
     private SwipeRefreshLayout swipe;
-    private ImageButton remove;
+    private ImageButton remove, seeGalery;
+    private Button seeProjects;
 
 
 
@@ -60,6 +65,29 @@ public class CompanyFragment extends Fragment {
         id = view.findViewById(R.id.textViewCompanyNameIdProfile);
         usernamecode = view.findViewById(R.id.textViewUsernamecodeCompanyProfile);
         remove = view.findViewById(R.id.buttonRemoveCompany);
+        seeGalery = view.findViewById(R.id.buttonSeeImagesCompanyFragment);
+        seeProjects = view.findViewById(R.id.buttonSeeProjectsCompany);
+        seeProjects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getView() != null) {
+                    Bundle b = new Bundle();
+                    b.putString("id", comp.getIdEmpresa());
+                    b.putBoolean("comp", true);
+                    Navigation.findNavController(getView()).navigate(R.id.action_companyFragment_to_navigation_projects,b);
+                }
+            }
+        });
+        seeGalery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getView() != null && comp != null) {
+                    Bundle b = new Bundle();
+                    b.putString("id", comp.getIdEmpresa());
+                    Navigation.findNavController(getView()).navigate(R.id.action_companyFragment_to_companiesImagesFragment,b);
+                }
+            }
+        });
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,23 +142,35 @@ public class CompanyFragment extends Fragment {
         }
     }
     private void remove(){
-        if(getActivity() != null) {
-            // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
-            ((MainActivity) getActivity()).socket.once("removedCompany", new Emitter.Listener() {
-                @Override
-                public void call(Object... args) {
-                    System.out.println(args[0]);
-                    if(args[0].equals("correct") && getActivity() != null){
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getActivity(), "Eliminado correctamente", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(getString(R.string.delete))
+                .setMessage(R.string.deletemessage)
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(getActivity() != null) {
+                            // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
+                            ((MainActivity) getActivity()).socket.once("removedCompany", new Emitter.Listener() {
+                                @Override
+                                public void call(Object... args) {
+                                    System.out.println(args[0]);
+                                    if(args[0].equals("correct") && getActivity() != null){
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                            ((MainActivity) getActivity()).socket.emit("removeCompany", idCompany, ((MainActivity) getActivity()).socket.id());
+                        }
                     }
-                }
-            });
-            ((MainActivity) getActivity()).socket.emit("removeCompany", idCompany, ((MainActivity) getActivity()).socket.id());
-        }
+                })
+                .setNegativeButton(R.string.cancel, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 }

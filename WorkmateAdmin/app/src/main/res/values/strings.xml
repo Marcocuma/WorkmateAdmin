@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WorkmateAdmin</string>
+    <string name="app_name">Workmate Admin</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -23,4 +23,22 @@
     <string name="usernamecode">Username code</string>
     <string name="id">Id</string>
     <string name="email">Email</string>
+    <string name="seeimages">See images</string>
+    <string name="company">Company</string>
+    <string name="images">Images</string>
+    <string name="seeprojects">See projects</string>
+    <string name="projects">Projects</string>
+    <string name="details">Details</string>
+    <string name="seeinmaps">See in maps</string>
+    <string name="projectnotfound">Project not found</string>
+    <string name="indevelopment">In development</string>
+    <string name="ended">Ended</string>
+    <string name="open">Open</string>
+    <string name="openmapintentmessage">This will open an external map app</string>
+    <string name="externalmap">External map</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="removedcorrect">Removed correctly</string>
+    <string name="delete">Delete</string>
+    <string name="deletemessage">Do you want to delete it?</string>
 </resources>

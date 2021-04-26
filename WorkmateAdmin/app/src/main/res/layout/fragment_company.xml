@@ -110,6 +110,21 @@
                 </LinearLayout>
 
 
+                <Button
+                    android:id="@+id/buttonSeeProjectsCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="@string/seeprojects"
+                    android:textColor="@color/background" />
+
+                <ImageButton
+                    android:id="@+id/buttonSeeImagesCompanyFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@color/colorAccent"
+                    android:src="@drawable/ic_baseline_image_24" />
+
                 <ImageButton
                     android:id="@+id/buttonRemoveCompany"
                     android:layout_width="match_parent"

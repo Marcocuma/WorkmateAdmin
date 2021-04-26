@@ -1,10 +1,13 @@
 package com.example.workmateadmin.ui.users;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -38,6 +41,7 @@ public class UserDataFragment extends Fragment {
     private ImageView profile;
     private SwipeRefreshLayout swipe;
     private ImageButton remove;
+    private Button seeProjects;
 
 
     @Override
@@ -62,6 +66,17 @@ public class UserDataFragment extends Fragment {
         id = view.findViewById(R.id.textViewUserNameIdProfile);
         usernamecode = view.findViewById(R.id.textViewUsernamecodeUserProfile);
         remove = view.findViewById(R.id.buttonRemoveUser);
+        seeProjects = view.findViewById(R.id.buttonSeeProjectsUser);
+        seeProjects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getView() != null) {
+                    Bundle b = new Bundle();
+                    b.putString("id", usuario.getIdUsuario());
+                    Navigation.findNavController(getView()).navigate(R.id.action_userDataFragment_to_navigation_projects,b);
+                }
+            }
+        });
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,22 +131,35 @@ public class UserDataFragment extends Fragment {
         }
     }
     private void remove(){
-        if(getActivity() != null) {
-            // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
-            ((MainActivity) getActivity()).socket.once("removedUser", new Emitter.Listener() {
-                @Override
-                public void call(Object... args) {
-                    if(args[0].equals("correct") && getActivity() != null){
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getActivity(), "Eliminado correctamente", Toast.LENGTH_SHORT).show();
+        if(getContext() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle(getString(R.string.delete))
+                    .setMessage(R.string.deletemessage)
+                    .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (getActivity() != null) {
+                                // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
+                                ((MainActivity) getActivity()).socket.once("removedUser", new Emitter.Listener() {
+                                    @Override
+                                    public void call(Object... args) {
+                                        if (args[0].equals("correct") && getActivity() != null) {
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                                ((MainActivity) getActivity()).socket.emit("removeUser", idUser, ((MainActivity) getActivity()).socket.id());
                             }
-                        });
-                    }
-                }
-            });
-            ((MainActivity) getActivity()).socket.emit("removeUser", idUser, ((MainActivity) getActivity()).socket.id());
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 }

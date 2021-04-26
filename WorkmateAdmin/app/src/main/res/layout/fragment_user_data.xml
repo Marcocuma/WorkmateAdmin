@@ -109,7 +109,13 @@
                         android:textAlignment="viewEnd" />
                 </LinearLayout>
 
-
+                <Button
+                    android:id="@+id/buttonSeeProjectsUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="@string/seeprojects"
+                    android:textColor="@color/background" />
                 <ImageButton
                     android:id="@+id/buttonRemoveUser"
                     android:layout_width="match_parent"

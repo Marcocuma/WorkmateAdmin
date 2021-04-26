@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WorkmateAdmin</string>
+    <string name="app_name">Workmate Admin</string>
     <string name="login">Inciar sesión</string>
     <string name="passwordhint">Escribe la contraseña</string>
     <string name="incorrectpass">Contraseña incorrecta</string>
@@ -13,4 +13,22 @@
     <string name="usernamecode">Codigo de usuario</string>
     <string name="id">Id</string>
     <string name="email">Email</string>
+    <string name="seeimages">Ver imagenes</string>
+    <string name="company">Empresa</string>
+    <string name="images">Imágenes</string>
+    <string name="seeprojects">Ver proyectos</string>
+    <string name="projects">Proyectos</string>
+    <string name="details">Detalles</string>
+    <string name="seeinmaps">Ver en un mapa</string>
+    <string name="openmapintentmessage">Esta acción abrirá una aplicación de mapas externa</string>
+    <string name="externalmap">Mapa externo</string>
+    <string name="projectnotfound">Proyecto no encontrado</string>
+    <string name="indevelopment">En desarrollo</string>
+    <string name="ended">Terminado</string>
+    <string name="open">Abierto</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="removedcorrect">Eliminado correctamente</string>
+    <string name="delete">Eliminar</string>
+    <string name="deletemessage">¿Quiere eliminarlo?</string>
 </resources>

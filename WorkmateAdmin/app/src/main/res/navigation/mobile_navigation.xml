@@ -27,18 +27,50 @@
 
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.workmateadmin.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_projects"
+        android:name="com.example.workmateadmin.ui.projects.ProjectsFragment"
+        android:label="@string/projects"
+        tools:layout="@layout/fragment_projects" >
+        <action
+            android:id="@+id/action_navigation_projects_to_detailsProjectFragment"
+            app:destination="@id/detailsProjectFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userDataFragment"
         android:name="com.example.workmateadmin.ui.users.UserDataFragment"
         android:label="@string/user"
-        tools:layout="@layout/fragment_user_data" />
+        tools:layout="@layout/fragment_user_data" >
+        <action
+            android:id="@+id/action_userDataFragment_to_navigation_projects"
+            app:destination="@id/navigation_projects" />
+    </fragment>
     <fragment
         android:id="@+id/companyFragment"
         android:name="com.example.workmateadmin.ui.companies.CompanyFragment"
-        android:label="fragment_company"
-        tools:layout="@layout/fragment_company" />
+        android:label="@string/company"
+        tools:layout="@layout/fragment_company" >
+        <action
+            android:id="@+id/action_companyFragment_to_companiesImagesFragment"
+            app:destination="@id/companiesImagesFragment" />
+        <action
+            android:id="@+id/action_companyFragment_to_navigation_projects"
+            app:destination="@id/navigation_projects" />
+    </fragment>
+    <fragment
+        android:id="@+id/companiesImagesFragment"
+        android:name="com.example.workmateadmin.ui.companies.CompaniesImagesFragment"
+        android:label="@string/images"
+        tools:layout="@layout/fragment_companies_images" />
+    <fragment
+        android:id="@+id/detailsProjectFragment"
+        android:name="com.example.workmateadmin.ui.projects.DetailsProjectFragment"
+        android:label="@string/details"
+        tools:layout="@layout/fragment_details_project" >
+        <action
+            android:id="@+id/action_detailsProjectFragment_to_userDataFragment"
+            app:destination="@id/userDataFragment" />
+        <action
+            android:id="@+id/action_detailsProjectFragment_to_companyFragment"
+            app:destination="@id/companyFragment" />
+    </fragment>
 </navigation>
