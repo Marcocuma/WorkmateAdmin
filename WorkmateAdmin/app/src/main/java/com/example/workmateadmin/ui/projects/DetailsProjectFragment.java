@@ -96,6 +96,18 @@ public class DetailsProjectFragment extends Fragment{
         town = view.findViewById(R.id.editTextTextTownDetailsProject);
         province = view.findViewById(R.id.editTextTextProvinceDetailsProject);
         userLayout = view.findViewById(R.id.linearLayoutUserLayoutDetailsProject);
+        seeGallery = view.findViewById(R.id.imageButtonSeeProjectGallery);
+        // Va a la galeria pasandole el id
+        seeGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getView() != null) {
+                    Bundle b = new Bundle();
+                    b.putString("id", proy.getIdProyecto());
+                    Navigation.findNavController(getView()).navigate(R.id.action_detailsProjectFragment_to_projectImagesFragment,b);
+                }
+            }
+        });
         removeProject = view.findViewById(R.id.buttonRemoveProject);
         removeProject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,13 +223,15 @@ public class DetailsProjectFragment extends Fragment{
                 projectState.setText(R.string.open);
             }
             description.setText(proy.getDescripcion());
-            // Muestro las empresas del proyecto, diferenciando en las rutas si es un usuario o una empresa, ya que la navegacion es diferente
+            // Va al fragment de la lista de empresas pasandole el id
             seeCompanies.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Bundle b = new Bundle();
-                    b.putString("proy", proy.getIdProyecto());
-                    Navigation.findNavController(getView()).navigate(R.id.action_detailsProjectFragment_to_projectCompaniesFragment, b);*/
+                    if(getView() != null) {
+                        Bundle b = new Bundle();
+                        b.putString("id", proy.getIdProyecto());
+                        Navigation.findNavController(getView()).navigate(R.id.action_detailsProjectFragment_to_projectCompaniesFragment,b);
+                    }
                 }
             });
             // Añado un listener al layout del usuario para que vaya a su perfil

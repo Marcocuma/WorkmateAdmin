@@ -72,5 +72,33 @@
         <action
             android:id="@+id/action_detailsProjectFragment_to_companyFragment"
             app:destination="@id/companyFragment" />
+        <action
+            android:id="@+id/action_detailsProjectFragment_to_projectImagesFragment"
+            app:destination="@id/projectImagesFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/action_detailsProjectFragment_to_projectCompaniesFragment"
+            app:destination="@id/projectCompaniesFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
+    <fragment
+        android:id="@+id/projectImagesFragment"
+        android:name="com.example.workmateadmin.ui.projects.ProjectImagesFragment"
+        android:label="ProjectImagesFragment" />
+    <fragment
+        android:id="@+id/projectCompaniesFragment"
+        android:name="com.example.workmateadmin.ui.projects.ProjectCompaniesFragment"
+        android:label="fragment_project_companies"
+        tools:layout="@layout/fragment_project_companies" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.workmateadmin.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

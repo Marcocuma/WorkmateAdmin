@@ -55,6 +55,15 @@ public class CompaniesImagesFragment extends Fragment {
         if( getArguments() != null ){
             companyId = getArguments().getString("id");
             loadData();
+            // Si tiene id, le asigna el listener
+            swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    loadData();
+                }
+            });
+        } else {
+            swipe.setEnabled(false);
         }
     }
 

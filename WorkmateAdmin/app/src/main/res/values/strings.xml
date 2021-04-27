@@ -41,4 +41,10 @@
     <string name="removedcorrect">Removed correctly</string>
     <string name="delete">Delete</string>
     <string name="deletemessage">Do you want to delete it?</string>
+    <string name="finished">Finished</string>
+    <string name="nocompaniesfound">No companies found</string>
+    <string name="password">Password</string>
+    <string name="laspassword">Last password</string>
+    <string name="newpassword">New password</string>
+    <string name="settings">Settings</string>
 </resources>

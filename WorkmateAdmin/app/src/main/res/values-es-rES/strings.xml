@@ -31,4 +31,10 @@
     <string name="removedcorrect">Eliminado correctamente</string>
     <string name="delete">Eliminar</string>
     <string name="deletemessage">¿Quiere eliminarlo?</string>
+    <string name="finished">Terminado</string>
+    <string name="nocompaniesfound">No se encontraron empresas</string>
+    <string name="password">Contraseña</string>
+    <string name="laspassword">Contraseña anterior</string>
+    <string name="newpassword">Nueva contraseña</string>
+    <string name="settings">Preferencias</string>
 </resources>
