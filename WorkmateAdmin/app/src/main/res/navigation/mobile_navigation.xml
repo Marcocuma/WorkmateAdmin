@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_users_to_userDataFragment"
             app:destination="@id/userDataFragment" />
+        <action
+            android:id="@+id/action_navigation_users_to_deletedUsersFragment"
+            app:destination="@id/deletedUsersFragment" />
     </fragment>
 
     <fragment
@@ -23,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_home_to_companyFragment"
             app:destination="@id/companyFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_deletedCompaniesFragment"
+            app:destination="@id/deletedCompaniesFragment" />
     </fragment>
 
 
@@ -90,15 +96,35 @@
     <fragment
         android:id="@+id/projectImagesFragment"
         android:name="com.example.workmateadmin.ui.projects.ProjectImagesFragment"
-        android:label="ProjectImagesFragment" />
+        android:label="@string/images" />
     <fragment
         android:id="@+id/projectCompaniesFragment"
         android:name="com.example.workmateadmin.ui.projects.ProjectCompaniesFragment"
-        android:label="fragment_project_companies"
-        tools:layout="@layout/fragment_project_companies" />
+        android:label="@string/companies"
+        tools:layout="@layout/fragment_project_companies" >
+        <action
+            android:id="@+id/action_projectCompaniesFragment_to_companyFragment"
+            app:destination="@id/companyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.workmateadmin.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/deletedUsersFragment"
+        android:name="com.example.workmateadmin.ui.users.DeletedUsersFragment"
+        android:label="@string/deletedusers" >
+        <action
+            android:id="@+id/action_deletedUsersFragment_to_userDataFragment"
+            app:destination="@id/userDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deletedCompaniesFragment"
+        android:name="com.example.workmateadmin.ui.companies.DeletedCompaniesFragment"
+        android:label="@string/comaniesdelete" >
+        <action
+            android:id="@+id/action_deletedCompaniesFragment_to_companyFragment"
+            app:destination="@id/companyFragment" />
+    </fragment>
 </navigation>

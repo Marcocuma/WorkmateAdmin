@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 import java.util.ArrayList;
 
-public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.OnUserChatClickListener {
+public class DeletedUsersFragment extends Fragment implements UsersRecyclerViewAdapter.OnUserChatClickListener {
     private ArrayList<Usuario> usersList, usersListFill;
 
     private RecyclerView usersRec;
@@ -58,13 +58,6 @@ public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.
         username = view.findViewById(R.id.editTextTextPersonName);
         search = view.findViewById(R.id.buttonSearchListUsers);
         swipe = view.findViewById(R.id.swipeRefreshUsersList);
-        goToDeleted = view.findViewById(R.id.buttonSeeDeletedUsers);
-        goToDeleted.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToDeletedUsers();
-            }
-        });
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -77,6 +70,8 @@ public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.
                 searchUser();
             }
         });
+        goToDeleted = view.findViewById(R.id.buttonSeeDeletedUsers);
+        goToDeleted.setVisibility(View.GONE);
         usersRec.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new UsersRecyclerViewAdapter(usersList, getContext(), this);
         usersRec.setAdapter(adapter);
@@ -88,13 +83,17 @@ public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.
         loading.setVisibility(View.VISIBLE);
         usersList.clear();
         usersListFill.clear();
-        FirebaseFirestore.getInstance().collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        FirebaseFirestore.getInstance().collection("deletedUsers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
              if(task.isSuccessful() && task.getResult() != null){
                  for (DocumentSnapshot doc : task.getResult().getDocuments()){
                      Usuario user = doc.toObject(Usuario.class);
-                     usersList.add(user);
+                     // Pone la imagen por defecto ya que al estar eliminado su imagen no existe
+                     if(user != null) {
+                         user.setFoto("default");
+                         usersList.add(user);
+                     }
                  }
                  usersListFill.addAll(usersList);
                  adapter.notifyDataSetChanged();
@@ -128,15 +127,12 @@ public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.
      }
     @Override
     public void irUser(String c) {
+        // Va al fragment del detalle del usuario indicandole que está eliminado
         if(getView() != null) {
             Bundle b = new Bundle();
             b.putString("id", c);
-            Navigation.findNavController(getView()).navigate(R.id.action_navigation_users_to_userDataFragment,b);
-        }
-    }
-    private void goToDeletedUsers(){
-        if(getView() != null) {
-            Navigation.findNavController(getView()).navigate(R.id.action_navigation_users_to_deletedUsersFragment);
+            b.putBoolean("deleted", true);
+            Navigation.findNavController(getView()).navigate(R.id.action_deletedUsersFragment_to_userDataFragment,b);
         }
     }
 }

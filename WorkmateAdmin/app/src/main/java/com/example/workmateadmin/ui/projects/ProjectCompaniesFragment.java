@@ -118,7 +118,7 @@ public class ProjectCompaniesFragment extends Fragment implements CompaniesRecyc
         if(getView() != null) {
             Bundle b = new Bundle();
             b.putString("id", c);
-            Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_companyFragment,b);
+            Navigation.findNavController(getView()).navigate(R.id.action_projectCompaniesFragment_to_companyFragment,b);
         }
     }
 }

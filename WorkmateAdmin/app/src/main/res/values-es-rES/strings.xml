@@ -37,4 +37,10 @@
     <string name="laspassword">Contraseña anterior</string>
     <string name="newpassword">Nueva contraseña</string>
     <string name="settings">Preferencias</string>
+    <string name="passwordchangedcorrectly">Contraseña cambiada correctamente</string>
+    <string name="seedeleted">Ver eliminados</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="logoutmessage">¿Quiere cerrar sesión?</string>
+    <string name="deletedusers">Usuarios eliminados</string>
+    <string name="comaniesdelete">Empresas eliminadas</string>
 </resources>

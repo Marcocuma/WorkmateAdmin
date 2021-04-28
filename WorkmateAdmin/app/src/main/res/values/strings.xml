@@ -47,4 +47,10 @@
     <string name="laspassword">Last password</string>
     <string name="newpassword">New password</string>
     <string name="settings">Settings</string>
+    <string name="passwordchangedcorrectly">Password changed correctly</string>
+    <string name="seedeleted">See deleted</string>
+    <string name="logout">Log out</string>
+    <string name="logoutmessage">Do you want to logout?</string>
+    <string name="deletedusers">Deleted users</string>
+    <string name="comaniesdelete">Deleted companies</string>
 </resources>

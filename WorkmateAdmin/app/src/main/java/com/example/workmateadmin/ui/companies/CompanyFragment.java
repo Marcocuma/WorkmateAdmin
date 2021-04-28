@@ -40,7 +40,7 @@ public class CompanyFragment extends Fragment {
     private SwipeRefreshLayout swipe;
     private ImageButton remove, seeGalery;
     private Button seeProjects;
-
+    private boolean deleted;
 
 
     @Override
@@ -58,6 +58,7 @@ public class CompanyFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        deleted = false;
         username = view.findViewById(R.id.textViewCompanyNameProfile);
         mail = view.findViewById(R.id.textViewMailCompanyProfile);
         profile = view.findViewById(R.id.imageViewCompanyLogoProfile);
@@ -88,6 +89,9 @@ public class CompanyFragment extends Fragment {
                 }
             }
         });
+        if(deleted){
+            seeGalery.setVisibility(View.GONE);
+        }
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,11 +106,16 @@ public class CompanyFragment extends Fragment {
         });
         if( getArguments() != null ){
             idCompany = getArguments().getString("id");
+            deleted = getArguments().containsKey("deleted");
             loadUser();
         }
     }
     private void loadUser(){
-        final DocumentReference userDocument = FirebaseFirestore.getInstance().collection("company").document(idCompany);
+        // Si no esta borrado, lo coge de la colleccion de las empresas, si lo esta de las borradas
+        String path = "company";
+        if(deleted)
+            path = "deletedCompanies";
+        final DocumentReference userDocument = FirebaseFirestore.getInstance().collection(path).document(idCompany);
         userDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -124,7 +133,7 @@ public class CompanyFragment extends Fragment {
                 mail.setText(comp.getEmail());
                 usernamecode.setText(comp.getUsernamecode());
                 id.setText(comp.getIdEmpresa());
-                if (comp.getLogo().equals("default"))
+                if (comp.getLogo().equals("Default") || deleted)
                     Glide.with(getContext())
                             .load(R.drawable.default_empresa)
                             .circleCrop()
@@ -142,35 +151,53 @@ public class CompanyFragment extends Fragment {
         }
     }
     private void remove(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(getString(R.string.delete))
-                .setMessage(R.string.deletemessage)
-                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(getActivity() != null) {
-                            // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
-                            ((MainActivity) getActivity()).socket.once("removedCompany", new Emitter.Listener() {
-                                @Override
-                                public void call(Object... args) {
-                                    System.out.println(args[0]);
-                                    if(args[0].equals("correct") && getActivity() != null){
-                                        getActivity().runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+        if(getContext() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle(getString(R.string.delete))
+                    .setMessage(R.string.deletemessage)
+                    .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (getActivity() != null) {
+                                // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
+                                if(!deleted) {
+                                    ((MainActivity) getActivity()).socket.once("removedCompany", new Emitter.Listener() {
+                                        @Override
+                                        public void call(Object... args) {
+                                            System.out.println(args[0]);
+                                            if (args[0].equals("correct") && getActivity() != null) {
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
                                             }
-                                        });
-                                    }
+                                        }
+                                    });
+                                    ((MainActivity) getActivity()).socket.emit("removeCompany", idCompany, ((MainActivity) getActivity()).socket.id());
+                                } else {
+                                    ((MainActivity) getActivity()).socket.once("removedDeletedCompany", new Emitter.Listener() {
+                                        @Override
+                                        public void call(Object... args) {
+                                            if (args[0].equals("correct") && getActivity() != null) {
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    });
+                                    ((MainActivity) getActivity()).socket.emit("removeDeletedCompany", idCompany, ((MainActivity) getActivity()).socket.id());
                                 }
-                            });
-                            ((MainActivity) getActivity()).socket.emit("removeCompany", idCompany, ((MainActivity) getActivity()).socket.id());
+                            }
                         }
-                    }
-                })
-                .setNegativeButton(R.string.cancel, null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
+                    })
+                    .setNegativeButton(R.string.cancel, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 }

@@ -42,6 +42,7 @@ public class UserDataFragment extends Fragment {
     private SwipeRefreshLayout swipe;
     private ImageButton remove;
     private Button seeProjects;
+    private boolean deleted;
 
 
     @Override
@@ -67,6 +68,7 @@ public class UserDataFragment extends Fragment {
         usernamecode = view.findViewById(R.id.textViewUsernamecodeUserProfile);
         remove = view.findViewById(R.id.buttonRemoveUser);
         seeProjects = view.findViewById(R.id.buttonSeeProjectsUser);
+        deleted = false;
         seeProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,11 +93,18 @@ public class UserDataFragment extends Fragment {
         });
         if( getArguments() != null ){
             idUser = getArguments().getString("id");
+            // Nos ayudara a comprobar que metodo del servidor debemos llamar al borrarlo y de que base de datos hay que cargarlo
+            deleted = getArguments().containsKey("deleted");
             loadUser();
         }
     }
     private void loadUser(){
-        final DocumentReference userDocument = FirebaseFirestore.getInstance().collection("users").document(idUser);
+        String path = "users";
+        if(deleted){
+            // Si esta eliminado, obtiene el usuario de la siguiente ruta
+            path = "deletedUsers";
+        }
+        final DocumentReference userDocument = FirebaseFirestore.getInstance().collection(path).document(idUser);
         userDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -113,7 +122,7 @@ public class UserDataFragment extends Fragment {
                 mail.setText(usuario.getEmail());
                 usernamecode.setText(usuario.getUsernamecode());
                 id.setText(usuario.getIdUsuario());
-                if (usuario.getFoto().equals("default"))
+                if (usuario.getFoto().equals("default") || deleted)
                     Glide.with(getContext())
                             .load(R.drawable.default_user)
                             .circleCrop()
@@ -139,21 +148,39 @@ public class UserDataFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (getActivity() != null) {
+                                // Si el usuario esta eliminado, lo borra de la collecion de eliminados, si no de la de usuarios
                                 // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
-                                ((MainActivity) getActivity()).socket.once("removedUser", new Emitter.Listener() {
-                                    @Override
-                                    public void call(Object... args) {
-                                        if (args[0].equals("correct") && getActivity() != null) {
-                                            getActivity().runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+                                if(deleted){
+                                    ((MainActivity) getActivity()).socket.once("removedDeletedUser", new Emitter.Listener() {
+                                        @Override
+                                        public void call(Object... args) {
+                                            if (args[0].equals("correct") && getActivity() != null) {
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }
                                         }
-                                    }
-                                });
-                                ((MainActivity) getActivity()).socket.emit("removeUser", idUser, ((MainActivity) getActivity()).socket.id());
+                                    });
+                                    ((MainActivity) getActivity()).socket.emit("removeDeletedUser", idUser, ((MainActivity) getActivity()).socket.id());
+                                } else {
+                                    ((MainActivity) getActivity()).socket.once("removedUser", new Emitter.Listener() {
+                                        @Override
+                                        public void call(Object... args) {
+                                            if (args[0].equals("correct") && getActivity() != null) {
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    });
+                                    ((MainActivity) getActivity()).socket.emit("removeUser", idUser, ((MainActivity) getActivity()).socket.id());
+                                }
                             }
                         }
                     })

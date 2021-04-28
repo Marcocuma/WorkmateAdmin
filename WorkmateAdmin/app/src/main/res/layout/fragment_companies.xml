@@ -49,6 +49,16 @@
                     android:src="@drawable/ic_baseline_search_24"
                     android:textColor="@color/background" />
             </LinearLayout>
+            <Button
+                android:id="@+id/buttonSeeDeletedCompanies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/redlight"
+                android:drawableEnd="@drawable/ic_baseline_double_arrow_24"
+                android:text="@string/seedeleted"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recViewCompanies"
@@ -58,7 +68,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/buttonSeeDeletedCompanies" />
 
             <ProgressBar
                 android:id="@+id/progressBarLoadingCompanies"

@@ -19,8 +19,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.workmateadmin.R;
 import com.example.workmateadmin.modelo.Empresa;
-import com.example.workmateadmin.modelo.Usuario;
-import com.example.workmateadmin.ui.users.UsersRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.base.Predicate;
@@ -33,7 +31,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 import java.util.ArrayList;
 
-public class CompaniesFragment extends Fragment implements CompaniesRecyclerViewAdapter.OnCompanyChatClickListener {
+public class DeletedCompaniesFragment extends Fragment implements CompaniesRecyclerViewAdapter.OnCompanyChatClickListener {
 
     private ArrayList<Empresa> companyList, companyListFill;
     private RecyclerView companiesRec;
@@ -59,12 +57,7 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
         search = view.findViewById(R.id.buttonSearchListCompanies);
         swipe = view.findViewById(R.id.swipeRefreshCompaniesList);
         goToDeleted = view.findViewById(R.id.buttonSeeDeletedCompanies);
-        goToDeleted.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToDeleted();
-            }
-        });
+        goToDeleted.setVisibility(View.GONE);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -87,13 +80,17 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
         loading.setVisibility(View.VISIBLE);
         companyList.clear();
         companyListFill.clear();
-        FirebaseFirestore.getInstance().collection("company").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        FirebaseFirestore.getInstance().collection("deletedCompanies").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful() && task.getResult() != null){
                     for (DocumentSnapshot doc : task.getResult().getDocuments()){
                         Empresa comp = doc.toObject(Empresa.class);
-                        companyList.add(comp);
+                        // Pone el logo por defecto, ya que al estar borradas, sus imagenes ya no existen
+                        if(comp != null) {
+                            comp.setLogo("Default");
+                            companyList.add(comp);
+                        }
                     }
                     companyListFill.addAll(companyList);
                     adapter.notifyDataSetChanged();
@@ -131,12 +128,9 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
         if(getView() != null) {
             Bundle b = new Bundle();
             b.putString("id", c);
-            Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_companyFragment,b);
+            b.putBoolean("deleted",true);
+            Navigation.findNavController(getView()).navigate(R.id.action_deletedCompaniesFragment_to_companyFragment,b);
         }
     }
-    private void goToDeleted(){
-        if(getView() != null) {
-            Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_deletedCompaniesFragment);
-        }
-    }
+
 }
