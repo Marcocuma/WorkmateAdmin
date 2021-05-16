@@ -6,7 +6,7 @@
     <string name="incorrectpass">Contraseña incorrecta</string>
     <string name="users">Usuarios</string>
     <string name="companies">Empresas</string>
-    <string name="insertname">Introduce el numero</string>
+    <string name="insertname">Introduce el nombre</string>
     <string name="remove">Eliminar</string>
     <string name="usernotfound">Usuario no encontrado</string>
     <string name="user">Usuario</string>

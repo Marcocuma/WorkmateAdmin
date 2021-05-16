@@ -24,6 +24,10 @@
                     android:id="@+id/imageViewUserImageProfile"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     tools:src="@tools:sample/avatars" />
 
                 <TextView
@@ -37,7 +41,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/list_bg"
                     android:orientation="horizontal"
                     android:paddingLeft="2dp"
@@ -63,7 +69,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/list_bg"
                     android:orientation="horizontal">
 
@@ -87,7 +95,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/list_bg"
                     android:orientation="horizontal">
 
@@ -113,13 +124,19 @@
                     android:id="@+id/buttonSeeProjectsUser"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/greybuttons"
                     android:text="@string/seeprojects"
-                    android:textColor="@color/background" />
+                    android:textColor="@color/colorAccent" />
+
                 <ImageButton
                     android:id="@+id/buttonRemoveUser"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@color/red"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:text="@string/remove" />

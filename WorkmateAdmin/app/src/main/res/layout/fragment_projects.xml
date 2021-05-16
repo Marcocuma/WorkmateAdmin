@@ -23,6 +23,9 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/dummy_bg"
                 android:elevation="2dp"
                 android:orientation="horizontal"
@@ -32,22 +35,22 @@
 
                 <EditText
                     android:id="@+id/editTextTextProjectName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="341dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/background"
                     android:ems="10"
                     android:hint="@string/insertname"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp" />
 
                 <ImageButton
                     android:id="@+id/buttonSearchListProjects"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:src="@drawable/ic_baseline_search_24"
-                    android:textColor="@color/background" />
+                    android:src="@drawable/ic_baseline_search_24_accent" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

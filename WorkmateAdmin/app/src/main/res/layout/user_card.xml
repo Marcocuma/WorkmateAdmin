@@ -6,6 +6,9 @@
     android:id="@+id/layoutUserCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/list_bg"
     android:elevation="8dp"
@@ -26,10 +29,10 @@
 
     <ImageButton
         android:id="@+id/imageButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/dummy_bg"
         app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
 
 </LinearLayout>

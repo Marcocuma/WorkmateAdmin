@@ -23,6 +23,9 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/dummy_bg"
                 android:elevation="2dp"
                 android:orientation="horizontal"
@@ -32,32 +35,35 @@
 
                 <EditText
                     android:id="@+id/editTextTextPersonName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="341dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/background"
                     android:ems="10"
                     android:hint="@string/insertname"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp" />
 
                 <ImageButton
                     android:id="@+id/buttonSearchListUsers"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:src="@drawable/ic_baseline_search_24"
+                    android:src="@drawable/ic_baseline_search_24_accent"
                     android:text="Button"
                     android:textColor="@color/background" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/buttonSeeDeletedUsers"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/redlight"
-                android:drawableEnd="@drawable/ic_baseline_double_arrow_24"
+                android:drawableEnd="@drawable/ic_baseline_double_arrow_24_red"
                 android:text="@string/seedeleted"
+                android:textColor="@color/redlight"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

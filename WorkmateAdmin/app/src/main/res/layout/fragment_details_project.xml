@@ -51,6 +51,8 @@
                         android:id="@+id/textViewTitleProjectDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:gravity="center"
                         android:text="TextView"
                         android:textSize="24sp" />
@@ -58,7 +60,9 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/linearLayout10"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp">
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp">
 
                         <ProgressBar
                             android:id="@+id/progressBarDetailsProject"
@@ -77,14 +81,21 @@
                         android:id="@+id/textViewProjectStateDetailsProject"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/list_bg"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:gravity="center"
                         android:text="TextView" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/linearLayoutUserLayoutDetailsProject"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/dummy_bg"
+                        android:elevation="5dp">
 
                         <ImageView
                             android:id="@+id/imageViewUserImageProjectDetails"
@@ -111,7 +122,10 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/linearLayout5"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp">
 
                         <HorizontalScrollView
                             android:layout_width="0dp"
@@ -128,18 +142,21 @@
 
                                 <com.google.android.material.chip.ChipGroup
                                     android:id="@+id/chipGroupCategoriesDetailsProject"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="40dp">
 
                                 </com.google.android.material.chip.ChipGroup>
                             </LinearLayout>
                         </HorizontalScrollView>
 
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp">
 
                         <TextView
                             android:id="@+id/editTextTextTownDetailsProject"
@@ -166,39 +183,59 @@
                         android:id="@+id/buttonOpenInMapsDetailsProject"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorAccent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/greybuttons"
                         android:text="@string/seeinmaps"
-                        android:textColor="@color/background" />
+                        android:textColor="@color/colorAccent" />
 
-                    <TextView
-                        android:id="@+id/textView"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layour_details_gallery_proyect"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="20dp"
-                        android:gravity="center"
-                        android:text="@string/images"
-                        android:textSize="24sp" />
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/images"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <com.denzcoskun.imageslider.ImageSlider
                         android:id="@+id/galerySliderProject"
                         android:layout_width="match_parent"
                         android:layout_height="210dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         app:iss_corner_radius="5"
                         app:iss_delay="0"
                         app:iss_period="1000"></com.denzcoskun.imageslider.ImageSlider>
-
-                    <ImageButton
-                        android:id="@+id/imageButtonSeeProjectGallery"
-                        android:layout_width="match_parent"
-                        android:layout_height="38dp"
-                        android:background="@color/colorAccent"
-                        android:src="@drawable/ic_baseline_image_24" />
 
                     <TextView
                         android:id="@+id/editTextTextMultiLineDescriptionDetailsProject"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginBottom="10dp"
                         android:ems="10"
                         android:gravity="start|top"
@@ -206,7 +243,9 @@
 
                     <com.google.android.material.chip.ChipGroup
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipSquareMetersDetailsProject"
@@ -219,21 +258,26 @@
                             android:layout_height="wrap_content" />
                     </com.google.android.material.chip.ChipGroup>
 
-                    <ImageButton
+                    <Button
                         android:id="@+id/buttonProjectDetailsSeeCompanies"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
-                        android:layout_height="38dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="20dp"
-                        android:background="@color/colorAccent"
-                        android:src="@drawable/ic_baseline_work_24"
-                        android:textColor="@color/design_default_color_background" />
-                    <ImageButton
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/companies"
+                        android:textColor="@color/colorAccent" />
+
+                    <Button
                         android:id="@+id/buttonRemoveProject"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
-                        android:layout_height="38dp"
-                        android:background="@color/red"
-                        android:src="@drawable/ic_baseline_delete_24"
-                        android:text="@string/remove" />
+                        android:layout_height="wrap_content"
+                        android:text="@string/remove"
+                        android:textColor="@color/redlight" />
+
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>

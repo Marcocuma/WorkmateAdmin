@@ -52,8 +52,8 @@ public class DetailsProjectFragment extends Fragment{
     //Interfaz
     private TextView title, userName,town,province,address,description, projectState;
     private ImageView userImage;
-    private Button openmaps;
-    private ImageButton seeGallery, seeCompanies, removeProject;
+    private Button openmaps,seeCompanies, removeProject;
+    private ConstraintLayout layoutImagesGallery;
     private ImageSlider galerySlider;
     private Chip square, maxbudget;
     private ProgressBar spinner, progress;
@@ -96,9 +96,9 @@ public class DetailsProjectFragment extends Fragment{
         town = view.findViewById(R.id.editTextTextTownDetailsProject);
         province = view.findViewById(R.id.editTextTextProvinceDetailsProject);
         userLayout = view.findViewById(R.id.linearLayoutUserLayoutDetailsProject);
-        seeGallery = view.findViewById(R.id.imageButtonSeeProjectGallery);
+        layoutImagesGallery = view.findViewById(R.id.layour_details_gallery_proyect);
         // Va a la galeria pasandole el id
-        seeGallery.setOnClickListener(new View.OnClickListener() {
+        layoutImagesGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(getView() != null) {

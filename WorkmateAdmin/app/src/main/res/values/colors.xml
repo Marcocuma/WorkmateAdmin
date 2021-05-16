@@ -7,4 +7,6 @@
     <color name="blue">#048A81</color>
     <color name="red">#F8333C</color>
     <color name="redlight">#FE5F55</color>
+    <color name="greybuttons">#EDEDED</color>
+    <color name="trasparent">#00F44336</color>
 </resources>

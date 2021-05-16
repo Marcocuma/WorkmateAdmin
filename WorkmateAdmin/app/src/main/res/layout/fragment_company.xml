@@ -24,19 +24,64 @@
                     android:id="@+id/imageViewCompanyLogoProfile"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
                     tools:src="@tools:sample/avatars" />
 
                 <TextView
                     android:id="@+id/textViewCompanyNameProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:textSize="24sp" />
 
                 <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+
+                    <TextView
+                        android:id="@+id/editTextTextTownDetailsCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10" />
+
+                    <TextView
+                        android:id="@+id/editTextTextProvinceDetailsCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10" />
+
+                    <TextView
+                        android:id="@+id/editTextTextAddressDetailsCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/buttonOpenInMapsDetailsCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/greybuttons"
+                    android:text="@string/seeinmaps"
+                    android:textColor="@color/colorAccent" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/list_bg"
                     android:orientation="horizontal"
                     android:paddingLeft="2dp"
@@ -63,7 +108,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/list_bg"
                     android:orientation="horizontal">
 
@@ -87,7 +134,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/list_bg"
                     android:orientation="horizontal">
 
@@ -114,21 +164,31 @@
                     android:id="@+id/buttonSeeProjectsCompany"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/greybuttons"
                     android:text="@string/seeprojects"
-                    android:textColor="@color/background" />
+                    android:textColor="@color/colorAccent" />
 
                 <ImageButton
                     android:id="@+id/buttonSeeImagesCompanyFragment"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/colorAccent"
-                    android:src="@drawable/ic_baseline_image_24" />
+                    android:src="@drawable/ic_baseline_image_24_accent" />
 
                 <ImageButton
                     android:id="@+id/buttonRemoveCompany"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/red"
                     android:src="@drawable/ic_baseline_delete_24"
                     android:text="@string/remove" />

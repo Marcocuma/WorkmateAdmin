@@ -1,6 +1,8 @@
 package com.example.workmateadmin.ui.companies;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,9 +37,10 @@ import io.socket.emitter.Emitter;
 public class CompanyFragment extends Fragment {
     private String idCompany;
     private Empresa comp;
-    private TextView username, mail, usernamecode, id;
+    private TextView username, mail, usernamecode, id, town,province,address;
     private ImageView profile;
     private SwipeRefreshLayout swipe;
+    private Button openmaps;
     private ImageButton remove, seeGalery;
     private Button seeProjects;
     private boolean deleted;
@@ -68,6 +71,10 @@ public class CompanyFragment extends Fragment {
         remove = view.findViewById(R.id.buttonRemoveCompany);
         seeGalery = view.findViewById(R.id.buttonSeeImagesCompanyFragment);
         seeProjects = view.findViewById(R.id.buttonSeeProjectsCompany);
+        address = view.findViewById(R.id.editTextTextAddressDetailsCompany);
+        town = view.findViewById(R.id.editTextTextTownDetailsCompany);
+        province = view.findViewById(R.id.editTextTextProvinceDetailsCompany);
+        openmaps = view.findViewById(R.id.buttonOpenInMapsDetailsCompany);
         seeProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +150,19 @@ public class CompanyFragment extends Fragment {
                             .load(comp.getLogo())
                             .circleCrop()
                             .into(profile);
+                address.setText(comp.getDireccion());
+                town.setText(comp.getLocalidad());
+                province.setText(comp.getProvincia());
+                if(comp.getDireccionGMaps() != null && !comp.getDireccionGMaps().isEmpty()){
+                    openmaps.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            openInMaps();
+                        }
+                    });
+                } else {
+                    openmaps.setVisibility(View.GONE);
+                }
                 swipe.setRefreshing(false);
             } else {
                 Toast.makeText(getContext(),R.string.usernotfound, Toast.LENGTH_SHORT).show();
@@ -150,6 +170,25 @@ public class CompanyFragment extends Fragment {
             }
         }
     }
+    private void openInMaps(){
+        if(getContext() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle(getString(R.string.externalmap))
+                    .setMessage(R.string.openmapintentmessage)
+                    .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse("geo:0,0?q=" + comp.getDireccionGMaps()));
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    }
+
     private void remove(){
         if(getContext() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
