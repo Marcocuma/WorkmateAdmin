@@ -37,7 +37,7 @@ import io.socket.emitter.Emitter;
 public class CompanyFragment extends Fragment {
     private String idCompany;
     private Empresa comp;
-    private TextView username, mail, usernamecode, id, town,province,address;
+    private TextView username, mail, usernamecode, id, town,province,address, description;
     private ImageView profile;
     private SwipeRefreshLayout swipe;
     private Button openmaps;
@@ -75,6 +75,7 @@ public class CompanyFragment extends Fragment {
         town = view.findViewById(R.id.editTextTextTownDetailsCompany);
         province = view.findViewById(R.id.editTextTextProvinceDetailsCompany);
         openmaps = view.findViewById(R.id.buttonOpenInMapsDetailsCompany);
+        description = view.findViewById(R.id.textViewDescriptionCompanyProfile);
         seeProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,6 +164,7 @@ public class CompanyFragment extends Fragment {
                 } else {
                     openmaps.setVisibility(View.GONE);
                 }
+                description.setText(comp.getDescripcion());
                 swipe.setRefreshing(false);
             } else {
                 Toast.makeText(getContext(),R.string.usernotfound, Toast.LENGTH_SHORT).show();

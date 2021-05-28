@@ -43,4 +43,5 @@
     <string name="logoutmessage">¿Quiere cerrar sesión?</string>
     <string name="deletedusers">Usuarios eliminados</string>
     <string name="comaniesdelete">Empresas eliminadas</string>
+    <string name="description">Descripción</string>
 </resources>
