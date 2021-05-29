@@ -28,6 +28,8 @@ import com.example.workmateadmin.modelo.Empresa;
 import com.example.workmateadmin.modelo.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,6 +43,7 @@ public class CompanyFragment extends Fragment {
     private ImageView profile;
     private SwipeRefreshLayout swipe;
     private Button openmaps;
+    private ChipGroup categoriesGroup;
     private ImageButton remove, seeGalery;
     private Button seeProjects;
     private boolean deleted;
@@ -76,6 +79,7 @@ public class CompanyFragment extends Fragment {
         province = view.findViewById(R.id.editTextTextProvinceDetailsCompany);
         openmaps = view.findViewById(R.id.buttonOpenInMapsDetailsCompany);
         description = view.findViewById(R.id.textViewDescriptionCompanyProfile);
+        categoriesGroup = view.findViewById(R.id.chipGroupComapnyDetailsProject);
         seeProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +158,15 @@ public class CompanyFragment extends Fragment {
                 address.setText(comp.getDireccion());
                 town.setText(comp.getLocalidad());
                 province.setText(comp.getProvincia());
+                // Si la empresa tiene categorias, las muestro
+                if (comp.getCategorias() != null) {
+                    categoriesGroup.removeAllViews();
+                    for (String cat : comp.getCategorias()) {
+                        Chip chip = new Chip(getContext());
+                        chip.setText(cat);
+                        categoriesGroup.addView(chip);
+                    }
+                }
                 if(comp.getDireccionGMaps() != null && !comp.getDireccionGMaps().isEmpty()){
                     openmaps.setOnClickListener(new View.OnClickListener() {
                         @Override

@@ -59,6 +59,7 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
         search = view.findViewById(R.id.buttonSearchListCompanies);
         swipe = view.findViewById(R.id.swipeRefreshCompaniesList);
         goToDeleted = view.findViewById(R.id.buttonSeeDeletedCompanies);
+
         goToDeleted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
