@@ -61,6 +61,7 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
+    // Comprueba que la contraseña anterior sea la correcta y la cambia por la nueva contraseña
     private void changePassword(){
         String lastPasswordSTR = lastPassword.getText().toString();
         String newPasswordSTR = newPassword.getText().toString();
@@ -76,6 +77,7 @@ public class SettingsFragment extends Fragment {
             }
         }
     }
+    // Cierra sesión
     private void logout(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(getString(R.string.logout))

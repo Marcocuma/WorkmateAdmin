@@ -104,6 +104,8 @@ public class DeletedUsersFragment extends Fragment implements UsersRecyclerViewA
             }
         });
     }
+    // Filtra la lista de usuarios por el nombre introducido como parametro
+    // Si el nombre esta vacio, deja la lista en el estado inicial
      private void searchUser(){
         final String name = username.getText().toString();
          usersRec.setVisibility(View.GONE);

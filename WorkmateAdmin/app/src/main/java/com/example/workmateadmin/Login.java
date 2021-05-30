@@ -20,11 +20,13 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginB = findViewById(R.id.button_login);
         password = findViewById(R.id.editTextTextPassword);
+        // Comprueba que la contraseña sea la misma que la guardada y si es asi entra en la aplicacion
         loginB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String con1 = password.getText().toString();
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(Login.this);
+                // Admin es la contraseña por defecto, pudiendo cambiarse cambiando el string
                 if(con1.equals(prefs.getString("password","admin"))){
                     Intent i = new Intent(Login.this, MainActivity.class);
                     startActivity(i);

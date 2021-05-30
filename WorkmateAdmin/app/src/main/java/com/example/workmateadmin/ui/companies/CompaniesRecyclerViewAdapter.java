@@ -37,8 +37,7 @@ public class CompaniesRecyclerViewAdapter extends RecyclerView.Adapter<Companies
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        // Si el usuario esta nulo, es porque aun no se ha cargado, así que mostrara un
-        // Texto indicando que esta cargando
+        // Si no tiene imagen, pone la imagen por defecto
         if(companies.get(position).getLogo() == null) {
             Glide.with(this.context)
                     .load(R.drawable.default_user)

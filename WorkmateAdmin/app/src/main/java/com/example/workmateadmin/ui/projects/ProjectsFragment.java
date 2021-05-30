@@ -74,6 +74,8 @@ public class ProjectsFragment extends Fragment implements ProjectsRecyclerViewAd
         projectsRec.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ProjectsRecyclerViewAdapter(projectsList, getContext(), this);
         projectsRec.setAdapter(adapter);
+        // Obtiene el id del usuario o empresa y el boolean que indica
+        // Si es un usuario o una empresa
         if( getArguments() != null ){
             idTarget = getArguments().getString("id");
             isComp = getArguments().containsKey("comp");
@@ -81,7 +83,6 @@ public class ProjectsFragment extends Fragment implements ProjectsRecyclerViewAd
         }
         loadProjects();
     }
-
     private void loadProjects(){
         // Si es un usuario, busca sus proyectos, si es una empresa, los proyectos en los que aparece
         projectsRec.setVisibility(View.GONE);
@@ -116,6 +117,7 @@ public class ProjectsFragment extends Fragment implements ProjectsRecyclerViewAd
                         }
                         projectsListFill.clear();
                         projectsListFill.addAll(projectsList);
+
                         adapter.notifyDataSetChanged();
                         projectsRec.setVisibility(View.VISIBLE);
                         loading.setVisibility(View.GONE);
@@ -125,6 +127,8 @@ public class ProjectsFragment extends Fragment implements ProjectsRecyclerViewAd
             });
         }
     }
+    // Filtra la lista de proyectos por el parametro introducido en el buscador
+    // Si esta vacio, rellena la lista con todos los proyectos, dejandola en el estado inicial
     private void searchProy(){
         final String name = projectname.getText().toString();
         projectsRec.setVisibility(View.GONE);
@@ -147,6 +151,7 @@ public class ProjectsFragment extends Fragment implements ProjectsRecyclerViewAd
         adapter.notifyDataSetChanged();
     }
     @Override
+    // Redirecciona a los detalle del proyecto
     public void goDetail(Proyecto p) {
         if(getView() != null) {
             Bundle b = new Bundle();

@@ -121,13 +121,14 @@ public class DetailsProjectFragment extends Fragment{
                 loadInfo();
             }
         });
+        // Obtiene el id del proyecto de los argumentos
         if(getArguments() != null) {
             idProy =  getArguments().getString("proy");
             loadInfo();
         }
     }
 
-
+    // carga el proyecto de la base de datos y su usuario creador
     public void loadInfo(){
         spinner.setVisibility(View.VISIBLE);
         contentView.setVisibility(View.INVISIBLE);
@@ -160,7 +161,7 @@ public class DetailsProjectFragment extends Fragment{
         });
     }
 
-
+    // Carga al interfaz con los datos del proyecto
     public void loadUI(){
         if(getView() != null && getContext() != null) {
             if(usuario.getIdUsuario().isEmpty()){
@@ -274,6 +275,7 @@ public class DetailsProjectFragment extends Fragment{
             refreshLayout.setRefreshing(false);
         }
     }
+    // Abre la localizacion en un mapa externo
     private void openInMaps(){
         if(getContext() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -292,6 +294,7 @@ public class DetailsProjectFragment extends Fragment{
             dialog.show();
         }
     }
+    // Manda al servidor la peticion de eliminar el proyecto, y crea un hilo de espera de la respuesta
     private void removeProject(){
         if(getContext() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -310,6 +313,13 @@ public class DetailsProjectFragment extends Fragment{
                                                 @Override
                                                 public void run() {
                                                     Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        } else if(args[0].equals("incorrect") && getActivity() != null){
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(getActivity(), R.string.removedincorrect, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                         }

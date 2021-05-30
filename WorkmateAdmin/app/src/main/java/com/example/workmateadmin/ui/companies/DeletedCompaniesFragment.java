@@ -75,6 +75,7 @@ public class DeletedCompaniesFragment extends Fragment implements CompaniesRecyc
         companiesRec.setAdapter(adapter);
         loadCompanies();
     }
+    // Carga la lista de empresas eliminadas
     public void loadCompanies(){
         companiesRec.setVisibility(View.GONE);
         loading.setVisibility(View.VISIBLE);
@@ -101,6 +102,8 @@ public class DeletedCompaniesFragment extends Fragment implements CompaniesRecyc
             }
         });
     }
+    // Filtra las empresas por el nombre introducido
+    // Si no se ha introducido ninguno vuelve a la lista inicial
     private void searchComp(){
         final String name = compname.getText().toString();
         companiesRec.setVisibility(View.GONE);
@@ -124,6 +127,7 @@ public class DeletedCompaniesFragment extends Fragment implements CompaniesRecyc
     }
 
     @Override
+    // Redirecciona al detalle de la empresa, pasandole el id y el boolean que indica si esta eliminada
     public void goCompany(String c) {
         if(getView() != null) {
             Bundle b = new Bundle();

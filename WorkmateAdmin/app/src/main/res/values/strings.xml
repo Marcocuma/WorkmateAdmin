@@ -54,4 +54,5 @@
     <string name="deletedusers">Deleted users</string>
     <string name="comaniesdelete">Deleted companies</string>
     <string name="description">Description</string>
+    <string name="removedincorrect">The server could not remove it, please reload the page</string>
 </resources>

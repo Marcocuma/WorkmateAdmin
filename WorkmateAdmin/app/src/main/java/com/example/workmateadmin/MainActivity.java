@@ -28,15 +28,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        // Inicializa la conexion con el servidor y se conecta
         try {
             socket = IO.socket("https://workmateadmin.herokuapp.com");
-        } catch (URISyntaxException e) {
-            System.out.println("Error al conectar");
-        }
+        } catch (URISyntaxException e) {}
         socket.connect();
     }
 
     @Override
+    // Se desconecta del servidor cuando se cierre la actividad
     protected void onDestroy() {
         super.onDestroy();
         socket.disconnect();

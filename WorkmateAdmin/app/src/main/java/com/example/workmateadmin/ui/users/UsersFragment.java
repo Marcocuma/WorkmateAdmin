@@ -105,6 +105,8 @@ public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.
             }
         });
     }
+    // Filtra la lista de usuarios por el nombre introducido como parametro
+    // Si el nombre esta vacio, deja la lista en el estado inicial
      private void searchUser(){
         final String name = username.getText().toString();
          usersRec.setVisibility(View.GONE);
@@ -127,6 +129,7 @@ public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.
         adapter.notifyDataSetChanged();
      }
     @Override
+    // Redirecciona a la pantalla de detalle del usuario, pasandole el id.
     public void irUser(String c) {
         if(getView() != null) {
             Bundle b = new Bundle();
@@ -134,6 +137,7 @@ public class UsersFragment extends Fragment implements UsersRecyclerViewAdapter.
             Navigation.findNavController(getView()).navigate(R.id.action_navigation_users_to_userDataFragment,b);
         }
     }
+    // Redirecciona a la pantalla de usuarios eliminados
     private void goToDeletedUsers(){
         if(getView() != null) {
             Navigation.findNavController(getView()).navigate(R.id.action_navigation_users_to_deletedUsersFragment);

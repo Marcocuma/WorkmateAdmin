@@ -70,7 +70,7 @@ public class ProjectCompaniesFragment extends Fragment implements CompaniesRecyc
             });
         }
     }
-
+    // Obtiene el proyecto y cada una de las empresas de la lista de empresas
     public void loadInfo(){
         companies.clear();
         FirebaseFirestore.getInstance().collection("projects").document(idProy).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -102,6 +102,7 @@ public class ProjectCompaniesFragment extends Fragment implements CompaniesRecyc
                                 });
                             }
                         }else{
+                            // Si no hay empresas, vuelve a la ventana anterior
                             if (getActivity() != null && getContext() != null) {
                                 Toast.makeText(getContext(), R.string.nocompaniesfound, Toast.LENGTH_SHORT).show();
                                 ((MainActivity) getActivity()).onBackPressed();
@@ -114,6 +115,7 @@ public class ProjectCompaniesFragment extends Fragment implements CompaniesRecyc
     }
 
     @Override
+    // Redirecciona a la ventana de perfil de empresa
     public void goCompany(String c) {
         if(getView() != null) {
             Bundle b = new Bundle();

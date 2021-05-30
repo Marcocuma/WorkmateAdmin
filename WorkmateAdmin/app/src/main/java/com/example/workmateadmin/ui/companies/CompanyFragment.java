@@ -80,6 +80,8 @@ public class CompanyFragment extends Fragment {
         openmaps = view.findViewById(R.id.buttonOpenInMapsDetailsCompany);
         description = view.findViewById(R.id.textViewDescriptionCompanyProfile);
         categoriesGroup = view.findViewById(R.id.chipGroupComapnyDetailsProject);
+        // Redirecciona a la ventana de proyectos, pasando como parametro el id de la empresa y el boolean
+        // que indica que se esta pidiendo los proyectos de una empresa
         seeProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +93,7 @@ public class CompanyFragment extends Fragment {
                 }
             }
         });
+        // Redirecciona a la galeria de imagenes pasando el id de la empresa
         seeGalery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,9 +104,7 @@ public class CompanyFragment extends Fragment {
                 }
             }
         });
-        if(deleted){
-            seeGalery.setVisibility(View.GONE);
-        }
+        // Si esta eliminada, oculta el boton de ver galeria
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,10 +117,14 @@ public class CompanyFragment extends Fragment {
                 loadUser();
             }
         });
+        // Obtiene el id y el boolean que indica si esta eliminado de los argumentos
         if( getArguments() != null ){
             idCompany = getArguments().getString("id");
             deleted = getArguments().containsKey("deleted");
             loadUser();
+        }
+        if(deleted){
+            seeGalery.setVisibility(View.GONE);
         }
     }
     private void loadUser(){
@@ -138,6 +143,8 @@ public class CompanyFragment extends Fragment {
             }
         });
     }
+
+    //Carga la interfaz con los datos obtenidos de la base de datos
     private void loadUI() {
         if (getView() != null && getContext() != null && getActivity() != null) {
             if (comp != null) {
@@ -167,6 +174,7 @@ public class CompanyFragment extends Fragment {
                         categoriesGroup.addView(chip);
                     }
                 }
+                // Si tiene localizacion, le da funcionalidad al boton de abrir en mapa
                 if(comp.getDireccionGMaps() != null && !comp.getDireccionGMaps().isEmpty()){
                     openmaps.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -185,6 +193,7 @@ public class CompanyFragment extends Fragment {
             }
         }
     }
+    // Abre la localizacion de la empresa en un mapa externo
     private void openInMaps(){
         if(getContext() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -203,7 +212,7 @@ public class CompanyFragment extends Fragment {
             dialog.show();
         }
     }
-
+    // Envia la solicitud de eliminar la empresa al servidor, esperando su respuesta
     private void remove(){
         if(getContext() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -213,17 +222,24 @@ public class CompanyFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (getActivity() != null) {
+                                // Comprueba de que base de datos tiene que borrarlo para diferenciar la peticion del server
                                 // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
                                 if(!deleted) {
                                     ((MainActivity) getActivity()).socket.once("removedCompany", new Emitter.Listener() {
                                         @Override
                                         public void call(Object... args) {
-                                            System.out.println(args[0]);
                                             if (args[0].equals("correct") && getActivity() != null) {
                                                 getActivity().runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            } else if(args[0].equals("incorrect") && getActivity() != null){
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedincorrect, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                             }
@@ -239,6 +255,13 @@ public class CompanyFragment extends Fragment {
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            } else if(args[0].equals("incorrect") && getActivity() != null){
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedincorrect, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                             }

@@ -53,6 +53,7 @@ public class CompaniesImagesFragment extends Fragment {
         imagesRec.setLayoutManager(new LinearLayoutManager(getContext()));
         imagesRec.setAdapter(adapter);
         if( getArguments() != null ){
+            // Obtiene el id de la empresa pasado como parámetro
             companyId = getArguments().getString("id");
             loadData();
             // Si tiene id, le asigna el listener
@@ -66,7 +67,7 @@ public class CompaniesImagesFragment extends Fragment {
             swipe.setEnabled(false);
         }
     }
-
+    // Carga la lista de imagenes de la empresa
     private void loadData(){
         final DocumentReference userDocument = FirebaseFirestore.getInstance().collection("company").document(companyId);
         userDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

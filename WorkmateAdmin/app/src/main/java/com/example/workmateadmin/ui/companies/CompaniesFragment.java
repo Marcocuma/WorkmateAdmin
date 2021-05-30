@@ -83,6 +83,7 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
         companiesRec.setAdapter(adapter);
         loadCompanies();
     }
+    // Carga las empresas de la base de datos y las añade a la lista
     public void loadCompanies(){
         companiesRec.setVisibility(View.GONE);
         loading.setVisibility(View.VISIBLE);
@@ -105,6 +106,8 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
             }
         });
     }
+    // Filtra la lista de empresas por el nombre introducido
+    // Si no se ha introducido nombre, devuelve la lista inicial
     private void searchComp(){
         final String name = compname.getText().toString();
         companiesRec.setVisibility(View.GONE);
@@ -128,6 +131,7 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
     }
 
     @Override
+    // Redirecciona a la ventana de perfil de empresa
     public void goCompany(String c) {
         if(getView() != null) {
             Bundle b = new Bundle();
@@ -135,6 +139,7 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
             Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_companyFragment,b);
         }
     }
+    // Redirecciona a la lista de empresas eliminadas
     private void goToDeleted(){
         if(getView() != null) {
             Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_deletedCompaniesFragment);

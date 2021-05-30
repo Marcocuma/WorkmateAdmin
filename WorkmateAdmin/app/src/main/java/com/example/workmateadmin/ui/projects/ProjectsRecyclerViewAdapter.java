@@ -75,6 +75,7 @@ public class ProjectsRecyclerViewAdapter extends RecyclerView.Adapter<ProjectsRe
         if(projects.get(position).getProvincia() != null){
             holder.provincia.setText(projects.get(position).getProvincia());
         }
+        // Obtiene la fecha de creacion
         if(projects.get(position).getCreado() != null){
             Date date=new Date(projects.get(position).getCreado());
             Calendar cal = Calendar.getInstance();

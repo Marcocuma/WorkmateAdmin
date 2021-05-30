@@ -54,6 +54,7 @@ public class ProjectImagesFragment extends Fragment {
         finishedImages = view.findViewById(R.id.recViewProjectFinishedImages);
         finishedLabel = view.findViewById(R.id.textViewProjectImageFinishedGalery);
         finishedImages.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Obtiene el id del proyecto de los argumentos
         if( getArguments() != null ){
             projectId = getArguments().getString("id");
             loadData();
@@ -68,14 +69,13 @@ public class ProjectImagesFragment extends Fragment {
             swipe.setEnabled(false);
         }
     }
-
+    // Carga los datos del proyecto y obtiene las imagenes
     private void loadData(){
         FirebaseFirestore.getInstance().collection("projects").document(projectId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.getResult() != null){
                     proy = task.getResult().toObject(Proyecto.class);
-                    // Si el usuario esta nulo, crea uno con los datos de un usuario eliminado
                     // Si no existe el proyecto, vuelve a la pantalla anterior
                     if(proy != null && getContext() != null) {
                         if (proy.getImagenesTerminado() != null && !proy.getImagenesTerminado().isEmpty()){

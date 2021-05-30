@@ -69,6 +69,7 @@ public class UserDataFragment extends Fragment {
         remove = view.findViewById(R.id.buttonRemoveUser);
         seeProjects = view.findViewById(R.id.buttonSeeProjectsUser);
         deleted = false;
+        // Redirecciona a la lista de proyectos de este usuario pasandole el id
         seeProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +99,7 @@ public class UserDataFragment extends Fragment {
             loadUser();
         }
     }
+    // Carga el detalle del usuario, comprobando si el usuario es eliminado o no
     private void loadUser(){
         String path = "users";
         if(deleted){
@@ -115,6 +117,7 @@ public class UserDataFragment extends Fragment {
             }
         });
     }
+    // Carga la interfaz con los datos
     private void loadUI() {
         if (getView() != null && getContext() != null && getActivity() != null) {
             if (usuario != null) {
@@ -139,6 +142,8 @@ public class UserDataFragment extends Fragment {
             }
         }
     }
+    // Envia la peticion de eliminancion del usuario al servidor
+    // Crea los listener que recibiran la respuesta
     private void remove(){
         if(getContext() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -148,7 +153,7 @@ public class UserDataFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (getActivity() != null) {
-                                // Si el usuario esta eliminado, lo borra de la collecion de eliminados, si no de la de usuarios
+                                // Si el usuario esta eliminado, lo borra de la coleccion de eliminados, si no de la de usuarios
                                 // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
                                 if(deleted){
                                     ((MainActivity) getActivity()).socket.once("removedDeletedUser", new Emitter.Listener() {
@@ -159,6 +164,13 @@ public class UserDataFragment extends Fragment {
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            } else if(args[0].equals("incorrect") && getActivity() != null){
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedincorrect, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                             }
@@ -174,6 +186,13 @@ public class UserDataFragment extends Fragment {
                                                     @Override
                                                     public void run() {
                                                         Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            } else if(args[0].equals("incorrect") && getActivity() != null){
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedincorrect, Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                             }
