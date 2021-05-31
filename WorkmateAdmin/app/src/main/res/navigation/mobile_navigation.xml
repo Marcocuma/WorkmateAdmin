@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_users" >
         <action
             android:id="@+id/action_navigation_users_to_userDataFragment"
-            app:destination="@id/userDataFragment" />
+            app:destination="@id/userDataFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_navigation_users_to_deletedUsersFragment"
-            app:destination="@id/deletedUsersFragment" />
+            app:destination="@id/deletedUsersFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -25,10 +33,18 @@
         tools:layout="@layout/fragment_companies" >
         <action
             android:id="@+id/action_navigation_home_to_companyFragment"
-            app:destination="@id/companyFragment" />
+            app:destination="@id/companyFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_navigation_home_to_deletedCompaniesFragment"
-            app:destination="@id/deletedCompaniesFragment" />
+            app:destination="@id/deletedCompaniesFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
 
 
@@ -39,7 +55,11 @@
         tools:layout="@layout/fragment_projects" >
         <action
             android:id="@+id/action_navigation_projects_to_detailsProjectFragment"
-            app:destination="@id/detailsProjectFragment" />
+            app:destination="@id/detailsProjectFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/userDataFragment"
@@ -48,7 +68,11 @@
         tools:layout="@layout/fragment_user_data" >
         <action
             android:id="@+id/action_userDataFragment_to_navigation_projects"
-            app:destination="@id/navigation_projects" />
+            app:destination="@id/navigation_projects"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
@@ -57,16 +81,25 @@
         tools:layout="@layout/fragment_company" >
         <action
             android:id="@+id/action_companyFragment_to_companiesImagesFragment"
-            app:destination="@id/companiesImagesFragment" />
+            app:destination="@id/companiesImagesFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_companyFragment_to_navigation_projects"
-            app:destination="@id/navigation_projects" />
+            app:destination="@id/navigation_projects"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/companiesImagesFragment"
         android:name="com.example.workmateadmin.ui.companies.CompaniesImagesFragment"
         android:label="@string/images"
-        tools:layout="@layout/fragment_companies_images" />
+        tools:layout="@layout/fragment_companies_images"
+        />
     <fragment
         android:id="@+id/detailsProjectFragment"
         android:name="com.example.workmateadmin.ui.projects.DetailsProjectFragment"
@@ -74,10 +107,18 @@
         tools:layout="@layout/fragment_details_project" >
         <action
             android:id="@+id/action_detailsProjectFragment_to_userDataFragment"
-            app:destination="@id/userDataFragment" />
+            app:destination="@id/userDataFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_detailsProjectFragment_to_companyFragment"
-            app:destination="@id/companyFragment" />
+            app:destination="@id/companyFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_detailsProjectFragment_to_projectImagesFragment"
             app:destination="@id/projectImagesFragment"
@@ -104,7 +145,11 @@
         tools:layout="@layout/fragment_project_companies" >
         <action
             android:id="@+id/action_projectCompaniesFragment_to_companyFragment"
-            app:destination="@id/companyFragment" />
+            app:destination="@id/companyFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_settings"
@@ -117,7 +162,11 @@
         android:label="@string/deletedusers" >
         <action
             android:id="@+id/action_deletedUsersFragment_to_userDataFragment"
-            app:destination="@id/userDataFragment" />
+            app:destination="@id/userDataFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/deletedCompaniesFragment"
@@ -125,6 +174,10 @@
         android:label="@string/comaniesdelete" >
         <action
             android:id="@+id/action_deletedCompaniesFragment_to_companyFragment"
-            app:destination="@id/companyFragment" />
+            app:destination="@id/companyFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
 </navigation>
