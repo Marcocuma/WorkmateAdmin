@@ -1,8 +1,10 @@
 package com.example.workmateadmin;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        // Inicializa la conexion con el servidor y se conecta
+        // Inicializa la conexion con el servidor 
         try {
             socket = IO.socket("https://workmateadmin.herokuapp.com");
         } catch (URISyntaxException e) {}
@@ -39,14 +41,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         socket.disconnect();
-        System.out.println("Cierra");
     }
     // Se desconecta del servidor cuando se cierra la aplicacion
     @Override
     protected void onStop() {
         super.onStop();
         socket.disconnect();
-        System.out.println("Se desconecta");
     }
 
     //se vuelve a conectar cuando se vuelve a poner la aplicación en primer plano
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         socket.connect();
-        System.out.println("Se conecta");
     }
 
     @Override

@@ -303,29 +303,38 @@ public class DetailsProjectFragment extends Fragment{
                     .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (getActivity() != null) {
-                                // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
-                                ((MainActivity) getActivity()).socket.once("removedProject", new Emitter.Listener() {
-                                    @Override
-                                    public void call(Object... args) {
-                                        if (args[0].equals("correct") && getActivity() != null) {
-                                            getActivity().runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-                                        } else if(args[0].equals("incorrect") && getActivity() != null){
-                                            getActivity().runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(getActivity(), R.string.removedincorrect, Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+                            // Compruebo que este conectado al servidor, si no cierra la ventana principal devolviendolo al login y le muestra el mensaje de error
+                            if(((MainActivity) getActivity()).socket.connected()) {
+                                if (getActivity() != null) {
+                                    // Muesta el mensaje de que se ha eliminado correctamente cuando el servidor termine de hacer la tarea
+                                    ((MainActivity) getActivity()).socket.once("removedProject", new Emitter.Listener() {
+                                        @Override
+                                        public void call(Object... args) {
+                                            if (args[0].equals("correct") && getActivity() != null) {
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedcorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            } else if (args[0].equals("incorrect") && getActivity() != null) {
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity(), R.string.removedincorrect, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }
                                         }
-                                    }
-                                });
-                                ((MainActivity) getActivity()).socket.emit("removeProject", idProy, ((MainActivity) getActivity()).socket.id());
+                                    });
+                                    ((MainActivity) getActivity()).socket.emit("removeProject", idProy, ((MainActivity) getActivity()).socket.id());
+                                }
+                            } else {
+                                if (getContext() != null) {
+                                    Toast.makeText(getContext(), R.string.errorserver, Toast.LENGTH_SHORT).show();
+                                    if (getActivity() != null)
+                                        getActivity().finish();
+                                }
                             }
                         }
                     })

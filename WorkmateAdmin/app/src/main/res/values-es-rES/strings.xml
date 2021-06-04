@@ -45,4 +45,11 @@
     <string name="comaniesdelete">Empresas eliminadas</string>
     <string name="description">Descripción</string>
     <string name="removedincorrect">El servidor no pudo eliminarlo. Por favor, recarge la ventana</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_login">Login</string>
+    <string name="hello_world">Hello World</string>
+    <string name="hello_blank_fragment">Blank</string>
+    <string name="errorserver">No se estableció la conexión con el servidor</string>
 </resources>

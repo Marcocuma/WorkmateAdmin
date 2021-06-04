@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -102,6 +103,12 @@ public class CompaniesFragment extends Fragment implements CompaniesRecyclerView
                     loading.setVisibility(View.GONE);
                     companiesRec.setVisibility(View.VISIBLE);
                     swipe.setRefreshing(false);
+                } else {
+                    if(getContext() != null) {
+                        Toast.makeText(getContext(), R.string.errorserver, Toast.LENGTH_SHORT).show();
+                        if(getActivity() != null)
+                            getActivity().finish();
+                    }
                 }
             }
         });
