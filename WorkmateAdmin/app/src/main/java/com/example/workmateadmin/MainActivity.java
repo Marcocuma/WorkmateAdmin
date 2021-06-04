@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             socket = IO.socket("https://workmateadmin.herokuapp.com");
         } catch (URISyntaxException e) {}
-        socket.connect();
     }
 
     @Override
@@ -40,7 +39,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         socket.disconnect();
+        System.out.println("Cierra");
     }
+    // Se desconecta del servidor cuando se cierra la aplicacion
+    @Override
+    protected void onStop() {
+        super.onStop();
+        socket.disconnect();
+        System.out.println("Se desconecta");
+    }
+
+    //se vuelve a conectar cuando se vuelve a poner la aplicación en primer plano
+    @Override
+    protected void onResume() {
+        super.onResume();
+        socket.connect();
+        System.out.println("Se conecta");
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         this.onBackPressed();
